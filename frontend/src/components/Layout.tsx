@@ -23,6 +23,7 @@ export const Layout: React.FC = () => {
                     </Link>
                     <nav className="flex gap-8 text-sm font-medium text-gray-400">
                         <Link to="/analyzer" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Analyzer</Link>
+                        <Link to="/deepfake" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Deepfake</Link>
                         <Link to="/about" className="hover:text-white hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.5)] transition-all">Privacy</Link>
                     </nav>
                 </div>

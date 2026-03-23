@@ -255,5 +255,39 @@ def analyze():
     return jsonify(result)
 
 
+@app.route('/api/analyze-media', methods=['POST'])
+def analyze_media():
+    """
+    Accepts a multipart file upload (field name: 'file').
+    Returns a deterministic mock deepfake-detection result so the
+    frontend ResultCard can render without a real ML model.
+    The score is seeded on the file's byte-length so the same file
+    always returns the same result during demo sessions.
+    """
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file provided'}), 400
+
+    f = request.files['file']
+    data = f.read()
+    file_size = len(data)
+
+    # Deterministic pseudo-score based on file size
+    score = (file_size * 31 + 7) % 101          # 0-100
+    confidence = (file_size * 17 + 41) % 21 + 75  # 75-95
+
+    if score > 70:
+        level = 'danger'
+    elif score > 30:
+        level = 'suspicious'
+    else:
+        level = 'safe'
+
+    return jsonify({
+        'score': score,
+        'confidence': confidence,
+        'level': level,
+    })
+
+
 if __name__ == '__main__':
     app.run(port=5000, debug=True)

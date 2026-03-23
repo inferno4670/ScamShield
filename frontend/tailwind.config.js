@@ -11,6 +11,7 @@ export default {
         surface: '#0a0a10',
         primary: '#06b6d4', // Cyan-500
         primaryGlow: '#06b6d488',
+        accent: '#00ffaa',
         secondary: '#a855f7', // Purple-500 
         safe: '#10b981',
         suspicious: '#f59e0b',
